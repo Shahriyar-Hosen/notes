@@ -1,12 +1,10 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const counter = () => {
+export default function Countries() {
   return (
     <View>
-      <Text>counter</Text>
+      <Text>Countries</Text>
     </View>
   );
-};
-
-export default counter;
+}
