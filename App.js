@@ -1,14 +1,9 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
-import NoteContainer from "./components/NoteContainer/NoteContainer";
+import { StyleSheet, Text, View } from "react-native";
+import Intro from "./app/screens/Intro";
 
 const App = () => {
-  return (
-    <View style={styles.container}>
-    <NoteContainer />
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <Intro />;
 };
 
 export default App;
@@ -16,11 +11,8 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#fff",
-    margin: 0,
-    padding:0,
-    marginTop: 35
-    // alignItems: "center",
-    // justifyContent: "center",
   },
 });
