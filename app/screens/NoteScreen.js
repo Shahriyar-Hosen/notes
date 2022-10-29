@@ -1,13 +1,25 @@
-import { View, Text, StyleSheet, StatusBar } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  StatusBar,
+  Keyboard,
+  TouchableWithoutFeedback,
+  FlatList,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import colors from "../misc/colors";
 import SearchBar from "../components/SearchBar";
 import RoundIconBtn from "../components/RoundIconBtn";
 import NoteInputModal from "../components/NoteInputModal";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Note from "../components/Note";
 
 const NoteScreen = ({ user }) => {
   const [greet, setGreet] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+
+  const [notes, setNotes] = useState([]);
 
   const findGreet = () => {
     const hrs = new Date().getHours();
@@ -16,34 +28,66 @@ const NoteScreen = ({ user }) => {
     setGreet("Evening");
   };
 
+  const findNotes = async () => {
+    const result = await AsyncStorage.getItem("notes");
+    console.log(result);
+    if (result !== null) setNotes(JSON.parse(result));
+  };
+
   useEffect(() => {
+    // AsyncStorage.clear()
+    findNotes();
     findGreet();
   }, []);
 
   const handleOnSubmit = async (title, desc) => {
-    console.log(title, desc);
+    const note = { id: Date.now(), title, desc, time: Date.now() };
+    const updatedNotes = [...notes, note];
+    setNotes(updatedNotes);
+    await AsyncStorage.setItem("notes", JSON.stringify(updatedNotes));
   };
 
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor={colors.LIGHT} />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          <Text style={styles.header}>{`Good ${greet} ${user.name}`}</Text>
 
-      <View style={styles.container}>
-        <Text style={styles.header}>{`Good ${greet} ${user.name}`}</Text>
-        <SearchBar containerStyle={{ marginVertical: 15 }} />
-      </View>
+          {notes.length ? (
+            <SearchBar containerStyle={{ marginVertical: 15 }} />
+          ) : null}
 
-      <View
-        style={[StyleSheet.absoluteFillObject, styles.emptyHeaderContainer]}
-      >
-        <Text style={styles.emptyHeader}>Add Notes</Text>
+          <FlatList
+            data={notes}
+            numColumns={2}
+            columnWrapperStyle={{
+              justifyContent: "space-between",
+              marginBottom: 15,
+            }}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => <Note item={item} />}
+          />
 
-        <RoundIconBtn
-          onPress={() => setModalVisible(true)}
-          antIconName="plus"
-          style={styles.addBtn}
-        />
-      </View>
+          {!notes.length ? (
+            <View
+              style={[
+                StyleSheet.absoluteFillObject,
+                styles.emptyHeaderContainer,
+              ]}
+            >
+              <Text style={styles.emptyHeader}>Add Notes</Text>
+            </View>
+          ) : null}
+        </View>
+      </TouchableWithoutFeedback>
+
+      <RoundIconBtn
+        onPress={() => setModalVisible(true)}
+        antIconName="plus"
+        style={styles.addBtn}
+      />
+
       <NoteInputModal
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
