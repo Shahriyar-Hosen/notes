@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import colors from "../misc/colors";
 import SearchBar from "../components/SearchBar";
 import RoundIconBtn from "../components/RoundIconBtn";
+import NoteInputModal from "../components/NoteInputModal";
 
 const NoteScreen = ({ user }) => {
   const [greet, setGreet] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
 
   const findGreet = () => {
     const hrs = new Date().getHours();
@@ -17,6 +19,10 @@ const NoteScreen = ({ user }) => {
   useEffect(() => {
     findGreet();
   }, []);
+
+  const handleOnSubmit = async (title, desc) => {
+    console.log(title, desc);
+  };
 
   return (
     <>
@@ -37,8 +43,12 @@ const NoteScreen = ({ user }) => {
           antIconName="plus"
           style={styles.addBtn}
         />
-        
       </View>
+      <NoteInputModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        onSubmit={handleOnSubmit}
+      />
     </>
   );
 };
