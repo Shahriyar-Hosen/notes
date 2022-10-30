@@ -1,12 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useState } from "react";
 import {
-  View,
-  StyleSheet,
+  Dimensions, StatusBar, StyleSheet,
   Text,
-  TextInput,
-  StatusBar,
-  Dimensions,
+  TextInput, View
 } from "react-native";
 import RoundIconBtn from "../components/RoundIconBtn";
 import colors from "../misc/colors";

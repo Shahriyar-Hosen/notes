@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
-  View,
-  StyleSheet,
-  Modal,
-  Text,
-  StatusBar,
-  TextInput,
-  TouchableWithoutFeedback,
-  Keyboard,
+  Keyboard, Modal, StatusBar, StyleSheet, TextInput,
+  TouchableWithoutFeedback, View
 } from "react-native";
 import colors from "../misc/colors";
 import RoundIconBtn from "./RoundIconBtn";

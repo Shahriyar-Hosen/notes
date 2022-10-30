@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, Dimensions, TouchableOpacity } from "react-native";
-import colors from "../misc/colors";
+import React from "react";
+import { Dimensions, Text } from "react-native";
 import styled from "styled-components/native";
+import colors from "../misc/colors";
 
 const width = Dimensions.get("window").width - 40;
 

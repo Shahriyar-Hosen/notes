@@ -1,18 +1,28 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
 import {
-  View,
-  StyleSheet,
-  Modal,
-  Text,
-  StatusBar,
-  TouchableWithoutFeedback,
-  Keyboard,
-  ScrollView,
-  Alert,
+  Alert, Keyboard, Modal, ScrollView, StatusBar, StyleSheet, Text, TouchableWithoutFeedback, View
 } from "react-native";
+import styled from "styled-components/native";
 import colors from "../misc/colors";
 import RoundIconBtn from "./RoundIconBtn";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const Container = styled.TouchableOpacity`
+  background-color: ${colors.PRIMARY};
+  width: ${10}px;
+  margin: 5px;
+  padding: 8px;
+  padding-inline: 15px;
+  border-radius: 10px;
+  color: ${colors.SAME_DARK};
+`;
+const Title = styled.Text`
+  color: ${colors.DARK};
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 6px;
+`;
 
 const NoteDetailModal = ({ visible, onClose, setNotes, item }) => {
   const [title, setTitle] = useState("");
@@ -47,6 +57,7 @@ const NoteDetailModal = ({ visible, onClose, setNotes, item }) => {
     setDesc("");
     onClose();
   };
+
   const deleteNote = async () => {
     const result = await AsyncStorage.getItem("notes");
 
@@ -112,13 +123,7 @@ const NoteDetailModal = ({ visible, onClose, setNotes, item }) => {
               }}
               onPress={displayDeleteAlert}
             />
-            {/* 
-            <RoundIconBtn
-          antIconName='delete'
-          style={{ backgroundColor: colors.ERROR, marginBottom: 15 }}
-          onPress={displayDeleteAlert}
-        />
-            */}
+
             <RoundIconBtn
               size={15}
               antIconName="edit"
@@ -126,15 +131,6 @@ const NoteDetailModal = ({ visible, onClose, setNotes, item }) => {
               onPress={handleSubmit}
             />
           </View>
-
-          {/* {title?.trim() || desc?.trim() ? (
-              <RoundIconBtn
-                size={15}
-                style={{ marginLeft: 15 }}
-                antIconName="close"
-                onPress={closeModal}
-              />
-            ) : null} */}
         </View>
 
         <ScrollView style={styles.container}>

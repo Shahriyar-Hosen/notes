@@ -1,20 +1,14 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  StatusBar,
-  Keyboard,
-  TouchableWithoutFeedback,
-  FlatList,
-} from "react-native";
-import React, { useEffect, useState } from "react";
-import colors from "../misc/colors";
-import SearchBar from "../components/SearchBar";
-import RoundIconBtn from "../components/RoundIconBtn";
-import NoteInputModal from "../components/NoteInputModal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useEffect, useState } from "react";
+import {
+  FlatList, Keyboard, StatusBar, StyleSheet, Text, TouchableWithoutFeedback, View
+} from "react-native";
 import Note from "../components/Note";
 import NoteDetailModal from "../components/NoteDetailModal";
+import NoteInputModal from "../components/NoteInputModal";
+import RoundIconBtn from "../components/RoundIconBtn";
+import SearchBar from "../components/SearchBar";
+import colors from "../misc/colors";
 
 const NoteScreen = ({ user }) => {
   const [greet, setGreet] = useState("");
