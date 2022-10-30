@@ -1,12 +1,39 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useState } from "react";
 import {
-  Dimensions, StatusBar, StyleSheet,
+  Dimensions,
+  StatusBar,
+  StyleSheet,
   Text,
-  TextInput, View
+  TextInput,
+  View,
 } from "react-native";
 import RoundIconBtn from "../components/RoundIconBtn";
 import colors from "../misc/colors";
+import styled from "styled-components/native";
+
+const Container = styled.TouchableOpacity`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+const TextInputC = styled.TouchableOpacity`
+  border-width: 2px;
+  border-color: ${colors.PRIMARY};
+  color: ${colors.PRIMARY};
+  width: 10px;
+  height: 50px;
+  border-radius: 10px;
+  padding-left: 15px;
+  font-size: 25px;
+  margin-bottom: 15px;
+`;
+const InputTitle = styled.TouchableOpacity`
+  align-self: flex-start;
+  padding: 25px;
+  margin-bottom: 5;
+  opacity: 0.5;
+`;
 
 const Intro = ({ onFinish }) => {
   const [name, setName] = useState("");

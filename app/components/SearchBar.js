@@ -2,6 +2,23 @@ import { AntDesign } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import colors from "../misc/colors";
+import styled from "styled-components/native";
+
+const Container = styled.TouchableOpacity`
+  justify-content: center;
+`;
+const searchBar = styled.Text`
+  border-width: 0.5px;
+  border-color: ${colors.PRIMARY};
+  height: 40;
+  border-radius: 40;
+  padding-left: 15;
+  font-size: 20;
+`;
+const clearIcon = styled.Text`
+  position: absolute;
+  right: 10;
+`;
 
 const SearchBar = ({ containerStyle, value, onClear, onChangeText }) => {
   return (

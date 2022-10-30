@@ -1,10 +1,45 @@
 import React, { useEffect, useState } from "react";
 import {
-  Keyboard, Modal, StatusBar, StyleSheet, TextInput,
-  TouchableWithoutFeedback, View
+  Keyboard,
+  Modal,
+  StatusBar,
+  StyleSheet,
+  TextInput,
+  TouchableWithoutFeedback,
+  View,
 } from "react-native";
 import colors from "../misc/colors";
 import RoundIconBtn from "./RoundIconBtn";
+import styled from "styled-components/native";
+
+const Container = styled.TouchableOpacity`
+  padding-inline: 20px;
+  padding-top: 15px;
+`;
+
+const Input = styled.TouchableOpacity`
+  border-bottom-width: 2px;
+  border-bottom-color: ${colors.PRIMARY};
+  font-size: 20px;
+  color: colorsDARK;
+`;
+const Title = styled.TouchableOpacity`
+  height: 40px;
+  margin-bottom: 15px;
+  font-weight: bold;
+`;
+const Desc = styled.TouchableOpacity`
+  height: 100px;
+`;
+const ModalBG = styled.TouchableOpacity`
+  flex: 1;
+  z-index: -1;
+`;
+const BtnContainer = styled.TouchableOpacity`
+  flex-direction: row;
+  justify-content: center;
+  padding-block: 15px;
+`;
 
 const NoteInputModal = ({ visible, onClose, onSubmit, note, isEdit }) => {
   const [title, setTitle] = useState("");

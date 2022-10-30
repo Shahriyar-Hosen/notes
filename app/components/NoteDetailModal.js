@@ -1,27 +1,60 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
 import {
-  Alert, Keyboard, Modal, ScrollView, StatusBar, StyleSheet, Text, TouchableWithoutFeedback, View
+  Alert,
+  Keyboard,
+  Modal,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
 } from "react-native";
-import styled from "styled-components/native";
 import colors from "../misc/colors";
 import RoundIconBtn from "./RoundIconBtn";
+import styled from "styled-components/native";
 
 const Container = styled.TouchableOpacity`
-  background-color: ${colors.PRIMARY};
-  width: ${10}px;
-  margin: 5px;
-  padding: 8px;
-  padding-inline: 15px;
-  border-radius: 10px;
+  padding-inline: 20px;
+  padding-top: 15px;
+  flex: 1;
+`;
+
+const Input = styled.TouchableOpacity`
+  font-size: 20px;
+  color: ${colors.DARK};
+`;
+const Title = styled.TouchableOpacity`
+  margin-block: 20px;
+  font-weight: bold;
+  text-align: center;
+`;
+const Desc = styled.TouchableOpacity`
+  margin-bottom: 25px;
   color: ${colors.SAME_DARK};
 `;
-const Title = styled.Text`
-  color: ${colors.DARK};
-  text-align: center;
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 6px;
+const ModalBG = styled.TouchableOpacity`
+  flex: 1;
+  z-index: -1;
+`;
+const BtnContainer = styled.TouchableOpacity`
+  flex-direction: "row";
+  justify-content: "center";
+  padding-inline: 15px;
+  border-bottom-width: 2px;
+  border-bottom-color: ${colors.PRIMARY};
+`;
+const BtnContainerS = styled.TouchableOpacity`
+  flex-direction: row;
+  justify-content: space-between;
+  padding-inline: 15px;
+  margin-block: 20px;
+`;
+const BtnContainerS2 = styled.TouchableOpacity`
+  flex-direction: row;
+  justify-content: space-between;
+  margin-block: 20px;
 `;
 
 const NoteDetailModal = ({ visible, onClose, setNotes, item }) => {
@@ -38,21 +71,8 @@ const NoteDetailModal = ({ visible, onClose, setNotes, item }) => {
     }
   }, [item]);
 
-  const handleOnChangeText = (text, valueFor) => {
-    if (valueFor === "title") setTitle(text);
-    if (valueFor === "desc") setDesc(text);
-  };
-
   const handleSubmit = () => {
     if (!title?.trim() && !desc?.trim()) return onClose();
-
-    // onSubmit(title, desc);
-    setTitle("");
-    setDesc("");
-    onClose();
-  };
-
-  const closeModal = () => {
     setTitle("");
     setDesc("");
     onClose();
@@ -65,16 +85,12 @@ const NoteDetailModal = ({ visible, onClose, setNotes, item }) => {
     if (result !== null) notes = JSON.parse(result);
 
     const newNotes = notes.filter((n) => n.id !== item.id);
-    const seletedNotes = notes.filter((n) => n.id === item.id);
 
-    console.log(seletedNotes);
     setNotes(newNotes);
 
     await AsyncStorage.setItem("notes", JSON.stringify(newNotes));
 
-    // console.log(newNotes, "Delete Done");
     onClose();
-    // props.navigation.goBack();
   };
 
   const displayDeleteAlert = () => {
