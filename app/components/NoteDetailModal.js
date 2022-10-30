@@ -12,8 +12,9 @@ import {
 } from "react-native";
 import colors from "../misc/colors";
 import RoundIconBtn from "./RoundIconBtn";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const NoteDetailModal = ({ visible, onClose, onSubmit, item }) => {
+const NoteDetailModal = ({ visible, onClose, setNotes, item }) => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const handleModalClose = () => {
@@ -46,6 +47,24 @@ const NoteDetailModal = ({ visible, onClose, onSubmit, item }) => {
     setDesc("");
     onClose();
   };
+  const deleteNote = async () => {
+    const result = await AsyncStorage.getItem("notes");
+
+    let notes = [];
+    if (result !== null) notes = JSON.parse(result);
+    
+    const newNotes = notes.filter((n) => n.id !== item.id);
+    const seletedNotes = notes.filter((n) => n.id === item.id);
+    
+    console.log(seletedNotes);
+    setNotes(newNotes);
+
+    await AsyncStorage.setItem("notes", JSON.stringify(newNotes));
+
+    // console.log(newNotes, "Delete Done");
+    onClose();
+    // props.navigation.goBack();
+  };
 
   const displayDeleteAlert = () => {
     Alert.alert(
@@ -54,11 +73,12 @@ const NoteDetailModal = ({ visible, onClose, onSubmit, item }) => {
       [
         {
           text: "Delete",
-          onPress: () => console.log("Delete Done"),
+          onPress: deleteNote,
         },
         {
           text: "No Thanks",
           onPress: () => console.log("no thanks"),
+          //   onPress: () => console.log("no thanks"),
         },
       ],
       {

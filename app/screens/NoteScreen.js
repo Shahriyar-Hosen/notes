@@ -114,6 +114,7 @@ const NoteScreen = ({ user }) => {
         onClose={() => setDetailModal(false)}
         onSubmit={detailOnSubmit}
         item={detailItem}
+        setNotes={setNotes}
       />
     </>
   );
