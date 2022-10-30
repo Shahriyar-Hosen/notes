@@ -52,10 +52,10 @@ const NoteDetailModal = ({ visible, onClose, setNotes, item }) => {
 
     let notes = [];
     if (result !== null) notes = JSON.parse(result);
-    
+
     const newNotes = notes.filter((n) => n.id !== item.id);
     const seletedNotes = notes.filter((n) => n.id === item.id);
-    
+
     console.log(seletedNotes);
     setNotes(newNotes);
 
@@ -154,7 +154,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 15,
     flex: 1,
-    backgroundColor: colors.PRIMARY,
   },
   input: {
     fontSize: 20,
@@ -177,6 +176,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     paddingVertical: 15,
+    borderBottomWidth: 2,
+    borderBottomColor: colors.PRIMARY,
   },
   btnContainerS: {
     flexDirection: "row",
