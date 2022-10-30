@@ -13,7 +13,6 @@ const App = () => {
     if (result !== null) {
       setUser(JSON.parse(result));
     }
-    console.log(result);
   };
 
   useEffect(() => {
