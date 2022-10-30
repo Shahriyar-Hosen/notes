@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -9,7 +9,17 @@ import {
 import colors from "../misc/colors";
 
 const Note = ({ item, onPress }) => {
+  const [modalVisible, setModalVisible] = useState(false);
+
   const { title, desc } = item;
+
+  const handleOnSubmit = async (title, desc) => {
+    const note = { id: Date.now(), title, desc, time: Date.now() };
+    // const updatedNotes = [...notes, note];
+    // setNotes(updatedNotes);
+    // await AsyncStorage.setItem("notes", JSON.stringify(updatedNotes));
+  };
+
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <Text style={styles.title} numberOfLines={2}>

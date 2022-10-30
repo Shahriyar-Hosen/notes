@@ -14,12 +14,14 @@ import RoundIconBtn from "../components/RoundIconBtn";
 import NoteInputModal from "../components/NoteInputModal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Note from "../components/Note";
+import NoteDetailModal from "../components/NoteDetailModal";
 
 const NoteScreen = ({ user }) => {
   const [greet, setGreet] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
-
   const [notes, setNotes] = useState([]);
+  const [detailItem, setDetailItem] = useState({});
+  const [detailModal, setDetailModal] = useState(false);
 
   const findGreet = () => {
     const hrs = new Date().getHours();
@@ -47,6 +49,18 @@ const NoteScreen = ({ user }) => {
     await AsyncStorage.setItem("notes", JSON.stringify(updatedNotes));
   };
 
+  const detailNote = (item) => {
+    setDetailItem(item);
+    setDetailModal(true);
+  };
+
+  const detailOnSubmit = async (title, desc) => {
+    const note = { id: Date.now(), title, desc, time: Date.now() };
+    const updatedNotes = [...notes, note];
+    setNotes(updatedNotes);
+    await AsyncStorage.setItem("notes", JSON.stringify(updatedNotes));
+  };
+
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor={colors.LIGHT} />
@@ -67,7 +81,7 @@ const NoteScreen = ({ user }) => {
             // }}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
-              <Note onPress={() => console.log("pressing")} item={item} />
+              <Note onPress={() => detailNote(item)} item={item} />
             )}
           />
 
@@ -94,6 +108,12 @@ const NoteScreen = ({ user }) => {
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
         onSubmit={handleOnSubmit}
+      />
+      <NoteDetailModal
+        visible={detailModal}
+        onClose={() => setDetailModal(false)}
+        onSubmit={detailOnSubmit}
+        item={detailItem}
       />
     </>
   );
