@@ -28,12 +28,16 @@ const styles = StyleSheet.create({
     width: width - 10,
     margin: 5,
     padding: 8,
+    paddingHorizontal: 15,
     borderRadius: 10,
+    color: colors.SAME_DARK,
   },
   title: {
     fontWeight: "bold",
     fontSize: 16,
-    color: colors.LIGHT,
+    color: colors.DARK,
+    textAlign: "center",
+    marginBottom: 5,
   },
 });
 

@@ -8,7 +8,7 @@ const RoundIconBtn = ({ antIconName, size, color, style, onPress }) => {
     <AntDesign
       name={antIconName}
       size={size || 24}
-      color={color || colors.LIGHT}
+      color={color || colors.DARK}
       style={[styles.icon, { ...style }]}
       onPress={onPress}
     />
@@ -17,7 +17,7 @@ const RoundIconBtn = ({ antIconName, size, color, style, onPress }) => {
 
 const styles = StyleSheet.create({
   icon: {
-    backgroundColor: colors.PRIMARY,
+    backgroundColor: colors.SECONDARY,
     padding: 15,
     borderRadius: 50,
     elevation: 5,
