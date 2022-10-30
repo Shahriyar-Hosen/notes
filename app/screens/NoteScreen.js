@@ -66,7 +66,9 @@ const NoteScreen = ({ user }) => {
               marginBottom: 15,
             }}
             keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => <Note item={item} />}
+            renderItem={({ item }) => (
+              <Note onPress={() => console.log("pressing")} item={item} />
+            )}
           />
 
           {!notes.length ? (
