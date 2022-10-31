@@ -16,13 +16,6 @@ const Container = styled.View`
   padding: 0 20px;
   padding-top: 15px;
 `;
-
-const Input = styled.TouchableOpacity`
-  border-bottom-width: 2px;
-  border-bottom-color: ${colors.PRIMARY};
-  font-size: 20px;
-  color: ${colors.DARK};
-`;
 const Title = styled.TextInput`
   border-bottom-width: 2px;
   border-bottom-color: ${colors.PRIMARY};
@@ -47,7 +40,7 @@ const ModalBG = styled.View`
 const BtnContainer = styled.View`
   flex-direction: row;
   justify-content: center;
-  padding-block: 15px;
+  padding: 15px 0;
 `;
 
 const NoteInputModal = ({ visible, onClose, onSubmit, note, isEdit }) => {
