@@ -1,38 +1,35 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useState } from "react";
-import {
-  Dimensions,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Dimensions, StatusBar } from "react-native";
 import RoundIconBtn from "../components/RoundIconBtn";
 import colors from "../misc/colors";
 import styled from "styled-components/native";
 
-const Container = styled.TouchableOpacity`
+const width = Dimensions.get("window").width - 50;
+
+const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
 `;
-const TextInputC = styled.TouchableOpacity`
+
+const InputTitle = styled.Text`
+  align-self: flex-start;
+  padding: 25px;
+  margin-bottom: 5;
+  opacity: 0.5;
+`;
+
+const TextInputC = styled.TextInput`
   border-width: 2px;
   border-color: ${colors.PRIMARY};
   color: ${colors.PRIMARY};
-  width: 10px;
+  width: ${width}px;
   height: 50px;
   border-radius: 10px;
   padding-left: 15px;
   font-size: 25px;
   margin-bottom: 15px;
-`;
-const InputTitle = styled.TouchableOpacity`
-  align-self: flex-start;
-  padding: 25px;
-  margin-bottom: 5;
-  opacity: 0.5;
 `;
 
 const Intro = ({ onFinish }) => {
@@ -49,48 +46,21 @@ const Intro = ({ onFinish }) => {
   return (
     <>
       <StatusBar hidden />
-      <View style={styles.container}>
-        <Text style={styles.inputTitle}>Enter Your Name to Continue</Text>
-        <TextInput
+      <Container>
+        <InputTitle>Enter Your Name to Continue</InputTitle>
+        <TextInputC
           value={name}
           onChangeText={handleOnChangeText}
           placeholder="Enter Name"
-          style={styles.textInput}
         />
 
         {/* If Text value > 3 than show Button */}
         {name.trim().length >= 3 ? (
           <RoundIconBtn antIconName="arrowright" onPress={handleSubmit} />
         ) : null}
-      </View>
+      </Container>
     </>
   );
 };
-
-const width = Dimensions.get("window").width - 50;
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  textInput: {
-    borderWidth: 2,
-    borderColor: colors.PRIMARY,
-    color: colors.PRIMARY,
-    width,
-    height: 50,
-    borderRadius: 10,
-    paddingLeft: 15,
-    fontSize: 25,
-    marginBottom: 15,
-  },
-  inputTitle: {
-    alignSelf: "flex-start",
-    paddingLeft: 25,
-    marginBottom: 5,
-    opacity: 0.5,
-  },
-});
 
 export default Intro;

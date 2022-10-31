@@ -4,29 +4,24 @@ import { StyleSheet, TextInput, View } from "react-native";
 import colors from "../misc/colors";
 import styled from "styled-components/native";
 
-const Container = styled.TouchableOpacity`
+const Container = styled.View`
   justify-content: center;
 `;
-const searchBar = styled.Text`
-  border-width: 0.5px;
-  border-color: ${colors.PRIMARY};
-  height: 40;
-  border-radius: 40;
-  padding-left: 15;
-  font-size: 20;
-`;
-const clearIcon = styled.Text`
-  position: absolute;
-  right: 10;
+const SearchInput = styled.TextInput`
+  border-width: 1px;
+  border-color: greenyellow;
+  height: 40px;
+  border-radius: 30px;
+  padding-left: 15px;
+  font-size: 20px;
 `;
 
 const SearchBar = ({ containerStyle, value, onClear, onChangeText }) => {
   return (
-    <View style={[styles.container, { ...containerStyle }]}>
-      <TextInput
+    <Container style={containerStyle}>
+      <SearchInput
         value={value}
         onChangeText={onChangeText}
-        style={styles.searchBar}
         placeholder="Search here.."
       />
       {value ? (
@@ -38,22 +33,11 @@ const SearchBar = ({ containerStyle, value, onClear, onChangeText }) => {
           style={styles.clearIcon}
         />
       ) : null}
-    </View>
+    </Container>
   );
 };
 
 const styles = StyleSheet.create({
-  searchBar: {
-    borderWidth: 0.5,
-    borderColor: colors.PRIMARY,
-    height: 40,
-    borderRadius: 40,
-    paddingLeft: 15,
-    fontSize: 20,
-  },
-  container: {
-    justifyContent: "center",
-  },
   clearIcon: {
     position: "absolute",
     right: 10,

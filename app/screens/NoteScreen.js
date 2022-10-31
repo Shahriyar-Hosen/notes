@@ -3,11 +3,8 @@ import React, { useEffect, useState } from "react";
 import {
   FlatList,
   Keyboard,
-  StatusBar,
   StyleSheet,
-  Text,
   TouchableWithoutFeedback,
-  View,
 } from "react-native";
 import Note from "../components/Note";
 import NoteDetailModal from "../components/NoteDetailModal";
@@ -17,14 +14,15 @@ import SearchBar from "../components/SearchBar";
 import colors from "../misc/colors";
 import styled from "styled-components/native";
 
-const Container = styled.TouchableOpacity`
-  padding-inline: 20px;
+const Container = styled.View`
+  padding: 0 20px;
   flex: 1;
   z-index: 1;
 `;
 const Header = styled.Text`
   font-size: 25px;
   font-weight: bold;
+  padding-top: 20px;
 `;
 const EmptyHeader = styled.Text`
   font-size: 30px;
@@ -32,7 +30,7 @@ const EmptyHeader = styled.Text`
   font-weight: bold;
   opacity: 0.2;
 `;
-const EmptyHeaderContainer = styled.Text`
+const EmptyHeaderContainer = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
@@ -91,13 +89,12 @@ const NoteScreen = ({ user }) => {
 
   return (
     <>
-      <StatusBar barStyle="dark-content" backgroundColor={colors.LIGHT} />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
-          <Text style={styles.header}>{`Good ${greet} ${user.name}`}</Text>
+        <Container>
+          <Header>{`Good ${greet} ${user.name}`}</Header>
 
           {notes.length ? (
-            <SearchBar containerStyle={{ marginVertical: 15 }} />
+            <SearchBar containerStyle={{ marginVertical: 20 }} />
           ) : null}
 
           <FlatList
@@ -109,16 +106,11 @@ const NoteScreen = ({ user }) => {
           />
 
           {!notes.length ? (
-            <View
-              style={[
-                StyleSheet.absoluteFillObject,
-                styles.emptyHeaderContainer,
-              ]}
-            >
-              <Text style={styles.emptyHeader}>Add Notes</Text>
-            </View>
+            <EmptyHeaderContainer style={StyleSheet.absoluteFillObject}>
+              <EmptyHeader>Add Notes</EmptyHeader>
+            </EmptyHeaderContainer>
           ) : null}
-        </View>
+        </Container>
       </TouchableWithoutFeedback>
 
       <RoundIconBtn
@@ -144,27 +136,6 @@ const NoteScreen = ({ user }) => {
 };
 
 const styles = StyleSheet.create({
-  header: {
-    fontSize: 25,
-    fontWeight: "bold",
-  },
-  container: {
-    paddingHorizontal: 20,
-    flex: 1,
-    zIndex: 1,
-  },
-  emptyHeader: {
-    fontSize: 30,
-    textTransform: "uppercase",
-    fontWeight: "bold",
-    opacity: 0.2,
-  },
-  emptyHeaderContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    zIndex: -1,
-  },
   addBtn: {
     position: "absolute",
     right: 15,

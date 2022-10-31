@@ -12,8 +12,8 @@ import colors from "../misc/colors";
 import RoundIconBtn from "./RoundIconBtn";
 import styled from "styled-components/native";
 
-const Container = styled.TouchableOpacity`
-  padding-inline: 20px;
+const Container = styled.View`
+  padding: 0 20px;
   padding-top: 15px;
 `;
 
@@ -21,21 +21,30 @@ const Input = styled.TouchableOpacity`
   border-bottom-width: 2px;
   border-bottom-color: ${colors.PRIMARY};
   font-size: 20px;
-  color: colorsDARK;
+  color: ${colors.DARK};
 `;
-const Title = styled.TouchableOpacity`
+const Title = styled.TextInput`
+  border-bottom-width: 2px;
+  border-bottom-color: ${colors.PRIMARY};
+  font-size: 20px;
+  color: ${colors.DARK};
   height: 40px;
   margin-bottom: 15px;
   font-weight: bold;
 `;
-const Desc = styled.TouchableOpacity`
+const Desc = styled.TextInput`
+  border-bottom-width: 2px;
+  border-bottom-color: ${colors.PRIMARY};
+  font-size: 20px;
+  color: ${colors.DARK};
+  // min-height: 100px;
   height: 100px;
 `;
-const ModalBG = styled.TouchableOpacity`
+const ModalBG = styled.View`
   flex: 1;
   z-index: -1;
 `;
-const BtnContainer = styled.TouchableOpacity`
+const BtnContainer = styled.View`
   flex-direction: row;
   justify-content: center;
   padding-block: 15px;
@@ -79,22 +88,20 @@ const NoteInputModal = ({ visible, onClose, onSubmit, note, isEdit }) => {
     <>
       <StatusBar hidden />
       <Modal visible={visible} animationType="fade">
-        <View style={styles.container}>
-          <TextInput
+        <Container>
+          <Title
             value={title}
             onChangeText={(text) => handleOnChangeText(text, "title")}
             placeholder="Title"
-            style={[styles.input, styles.title]}
           />
-          <TextInput
+          <Desc
             value={desc}
             multiline
             placeholder="Note"
-            style={[styles.input, styles.desc]}
             onChangeText={(text) => handleOnChangeText(text, "desc")}
           />
 
-          <View style={styles.btnContainer}>
+          <BtnContainer>
             <RoundIconBtn
               size={15}
               antIconName="check"
@@ -109,10 +116,10 @@ const NoteInputModal = ({ visible, onClose, onSubmit, note, isEdit }) => {
                 onPress={closeModal}
               />
             ) : null}
-          </View>
-        </View>
+          </BtnContainer>
+        </Container>
         <TouchableWithoutFeedback onPress={handleModalClose}>
-          <View style={[styles.modalBG, StyleSheet.absoluteFillObject]} />
+          <ModalBG style={StyleSheet.absoluteFillObject} />
         </TouchableWithoutFeedback>
       </Modal>
     </>

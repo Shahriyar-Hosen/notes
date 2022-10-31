@@ -4,57 +4,51 @@ import {
   Alert,
   Keyboard,
   Modal,
-  ScrollView,
-  StatusBar,
   StyleSheet,
-  Text,
   TouchableWithoutFeedback,
-  View,
 } from "react-native";
 import colors from "../misc/colors";
 import RoundIconBtn from "./RoundIconBtn";
 import styled from "styled-components/native";
 
-const Container = styled.TouchableOpacity`
-  padding-inline: 20px;
+const Container = styled.ScrollView`
+  padding: 0 20px;
   padding-top: 15px;
   flex: 1;
 `;
-
-const Input = styled.TouchableOpacity`
+const Title = styled.Text`
   font-size: 20px;
   color: ${colors.DARK};
-`;
-const Title = styled.TouchableOpacity`
-  margin-block: 20px;
+  margin: 20px 0;
   font-weight: bold;
   text-align: center;
 `;
-const Desc = styled.TouchableOpacity`
+const Desc = styled.Text`
+  font-size: 20px;
   margin-bottom: 25px;
   color: ${colors.SAME_DARK};
 `;
-const ModalBG = styled.TouchableOpacity`
+const ModalBG = styled.View`
   flex: 1;
   z-index: -1;
 `;
-const BtnContainer = styled.TouchableOpacity`
-  flex-direction: "row";
-  justify-content: "center";
-  padding-inline: 15px;
-  border-bottom-width: 2px;
-  border-bottom-color: ${colors.PRIMARY};
-`;
-const BtnContainerS = styled.TouchableOpacity`
+// const BtnContainer = styled.TouchableOpacity`
+//   flex-direction: "row";
+//   justify-content: "center";
+//   padding-inline: 15px;
+//   border-bottom-width: 2px;
+//   border-bottom-color: ${colors.PRIMARY};
+// `;
+const BtnContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  padding-inline: 15px;
-  margin-block: 20px;
+  padding: 0 15px;
+  margin: 20px 0;
 `;
-const BtnContainerS2 = styled.TouchableOpacity`
+const BtnContainerL = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  margin-block: 20px;
+  margin: 0 20px;
 `;
 
 const NoteDetailModal = ({ visible, onClose, setNotes, item }) => {
@@ -116,10 +110,10 @@ const NoteDetailModal = ({ visible, onClose, setNotes, item }) => {
 
   return (
     <>
-      <StatusBar hidden />
+      {/* <StatusBar hidden /> */}
       <Modal visible={visible} animationType="fade">
         {/* Btn Container */}
-        <View style={styles.btnContainerS}>
+        <BtnContainer>
           <RoundIconBtn
             size={15}
             antIconName="arrowleft"
@@ -128,7 +122,7 @@ const NoteDetailModal = ({ visible, onClose, setNotes, item }) => {
               backgroundColor: colors.LIGHT,
             }}
           />
-          <View style={styles.btnContainerS2}>
+          <BtnContainerL>
             <RoundIconBtn
               size={15}
               antIconName="delete"
@@ -146,62 +140,19 @@ const NoteDetailModal = ({ visible, onClose, setNotes, item }) => {
               style={{ marginLeft: 15 }}
               onPress={handleSubmit}
             />
-          </View>
-        </View>
+          </BtnContainerL>
+        </BtnContainer>
 
-        <ScrollView style={styles.container}>
-          <Text style={[styles.input, styles.title]}>{item.title}</Text>
-          <Text style={[styles.input, styles.desc]}>{item.desc}</Text>
-        </ScrollView>
+        <Container>
+          <Title>{item.title}</Title>
+          <Desc>{item.desc}</Desc>
+        </Container>
         <TouchableWithoutFeedback onPress={handleModalClose}>
-          <View style={[styles.modalBG, StyleSheet.absoluteFillObject]} />
+          <ModalBG style={StyleSheet.absoluteFillObject} />
         </TouchableWithoutFeedback>
       </Modal>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 20,
-    paddingTop: 15,
-    flex: 1,
-  },
-  input: {
-    fontSize: 20,
-    color: colors.DARK,
-  },
-  title: {
-    marginVertical: 20,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  desc: {
-    marginBottom: 25,
-    color: colors.SAME_DARK,
-  },
-  modalBG: {
-    flex: 1,
-    zIndex: -1,
-  },
-  btnContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    paddingVertical: 15,
-    borderBottomWidth: 2,
-    borderBottomColor: colors.PRIMARY,
-  },
-  btnContainerS: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 15,
-    marginHorizontal: 20,
-  },
-  btnContainerS2: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginHorizontal: 20,
-  },
-});
 
 export default NoteDetailModal;
