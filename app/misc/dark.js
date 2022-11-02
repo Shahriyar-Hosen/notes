@@ -9,7 +9,7 @@ export default {
   NAME: "#00c91b",
   BTN: "#8437ff",
 
-  DARK: "#FFF",
+  DARK: "#0b1120",
   SAME_DARK: "#e3e3e3",
   LIGHT: "#000b52",
 };
