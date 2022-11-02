@@ -6,6 +6,8 @@ export default {
   SECONDARY: "#fff942",
   ERROR: "#ff0000",
   SEARCH:"#FFF",
+  NAME: "#00c91b",
+  BTN: "#8437ff",
 
   DARK: "#FFF",
   SAME_DARK: "#e3e3e3",

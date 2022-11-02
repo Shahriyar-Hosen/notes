@@ -4,6 +4,7 @@ import {
   FlatList,
   Keyboard,
   StyleSheet,
+  Switch,
   TouchableWithoutFeedback,
 } from "react-native";
 import Note from "../components/Note";
@@ -13,6 +14,8 @@ import RoundIconBtn from "../components/RoundIconBtn";
 import SearchBar from "../components/SearchBar";
 import colors from "../misc/colors";
 import styled from "styled-components/native";
+import { AntDesign } from "@expo/vector-icons";
+import dark from "../misc/dark";
 
 const Container = styled.View`
   padding: 0 20px;
@@ -24,20 +27,24 @@ const Header = styled.Text`
   font-size: 20px;
   font-weight: bold;
   padding-top: 10px;
-  color: ${({ theme }) => theme?.main?.SECONDARY}
+  color: ${({ theme }) => theme?.main?.SECONDARY};
 `;
+const Name = styled.Text`
+  color: ${({ theme }) => theme?.main?.NAME};
+`;
+
 const Nav = styled.Text`
   font-size: 25px;
   font-weight: bold;
   padding-top: 20px;
-  color: ${({ theme }) => theme?.main?.COLOR}
+  color: ${({ theme }) => theme?.main?.COLOR};
 `;
 const EmptyHeader = styled.Text`
   font-size: 30px;
   text-transform: uppercase;
   font-weight: bold;
   opacity: 0.2;
-  color: ${({ theme }) => theme?.main?.COLOR}
+  color: ${({ theme }) => theme?.main?.COLOR};
 `;
 const EmptyHeaderContainer = styled.View`
   flex: 1;
@@ -52,7 +59,27 @@ const AddBtn = styled.Text`
   z-index: 1;
 `;
 
-const NoteScreen = ({ user }) => {
+const Mode = styled.Text`
+  font-size: 12px;
+  font-weight: bold;
+  padding-top: 15px;
+  color: ${({ theme }) => theme?.main?.COLOR};
+`;
+
+const NavContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 15px;
+  margin: 10px 0;
+`;
+const NavContainerEnd = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 15px;
+  margin: 0 20px;
+`;
+
+const NoteScreen = ({ user, isDarkMode, setIsDarkMode }) => {
   const [greet, setGreet] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [notes, setNotes] = useState([]);
@@ -100,9 +127,23 @@ const NoteScreen = ({ user }) => {
     <>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <Container>
+          <NavContainer>
+            <Nav>Note List</Nav>
 
-          <Nav>Note List</Nav>
-          <Header> {`Good ${greet} ${user.name}`}</Header>
+            <NavContainerEnd>
+              <Mode>{!isDarkMode ? "Dark" : "Light"}</Mode>
+
+              <Switch
+                value={isDarkMode}
+                onValueChange={() => setIsDarkMode(!isDarkMode)}
+              />
+            </NavContainerEnd>
+          </NavContainer>
+
+          <Header>
+            {" "}
+            {`Good ${greet} `} <Name>{user.name}</Name>{" "}
+          </Header>
 
           {notes.length ? (
             <SearchBar containerStyle={{ marginVertical: 20 }} />
@@ -128,6 +169,7 @@ const NoteScreen = ({ user }) => {
         onPress={() => setModalVisible(true)}
         antIconName="plus"
         style={styles.addBtn}
+        
       />
 
       <NoteInputModal

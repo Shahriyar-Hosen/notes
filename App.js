@@ -6,11 +6,11 @@ import NoteScreen from "./app/screens/NoteScreen";
 import { ThemeProvider } from "styled-components/native";
 import colors from "./app/misc/colors";
 import dark from "./app/misc/dark";
+import useTheme from "./app/hooks/useTheme";
 
 const App = () => {
   const [user, setUser] = useState({});
-
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useTheme();
 
   const theme = {
     main: isDarkMode ? dark : colors,
@@ -37,7 +37,11 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <NoteScreen user={user} />
+      <NoteScreen
+        user={user}
+        isDarkMode={isDarkMode}
+        setIsDarkMode={setIsDarkMode}
+      />
     </ThemeProvider>
   );
 };

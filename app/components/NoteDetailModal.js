@@ -34,13 +34,7 @@ const ModalBG = styled.View`
   flex: 1;
   z-index: -1;
 `;
-// const BtnContainer = styled.TouchableOpacity`
-//   flex-direction: "row";
-//   justify-content: "center";
-//   padding-inline: 15px;
-//   border-bottom-width: 2px;
-//   border-bottom-color: ${colors.PRIMARY};
-// `;
+
 const BtnContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
