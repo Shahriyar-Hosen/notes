@@ -1,4 +1,3 @@
-import { Appearance } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Intro from "./app/screens/Intro";
 import { useEffect, useState } from "react";

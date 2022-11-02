@@ -14,7 +14,6 @@ import RoundIconBtn from "../components/RoundIconBtn";
 import SearchBar from "../components/SearchBar";
 import colors from "../misc/colors";
 import styled from "styled-components/native";
-import { AntDesign } from "@expo/vector-icons";
 import dark from "../misc/dark";
 import { Entypo } from "@expo/vector-icons";
 

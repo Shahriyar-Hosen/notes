@@ -4,9 +4,7 @@ import {
   Modal,
   StatusBar,
   StyleSheet,
-  TextInput,
   TouchableWithoutFeedback,
-  View,
 } from "react-native";
 import colors from "../misc/colors";
 import RoundIconBtn from "./RoundIconBtn";

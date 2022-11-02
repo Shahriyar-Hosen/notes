@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import {  Text, StyleSheet, SafeAreaView } from "react-native";
 import React from "react";
 import Note from "../Note/Note";
 
