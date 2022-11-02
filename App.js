@@ -10,8 +10,10 @@ import dark from "./app/misc/dark";
 const App = () => {
   const [user, setUser] = useState({});
 
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
   const theme = {
-    main: dark || "mediumseagreen",
+    main: isDarkMode ? dark : colors,
   };
 
   const findUser = async () => {

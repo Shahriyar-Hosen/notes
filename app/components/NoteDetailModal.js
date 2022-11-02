@@ -121,7 +121,7 @@ const NoteDetailModal = ({ visible, onClose, setNotes, item }) => {
             antIconName="arrowleft"
             onPress={handleSubmit}
             style={{
-              backgroundColor: colors.LITE_COLOR,
+              backgroundColor: colors.SAME_DARK,
             }}
           />
           <BtnContainerL>

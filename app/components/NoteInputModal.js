@@ -30,7 +30,7 @@ const Title = styled.TextInput`
   border-bottom-width: 2px;
   border-bottom-color: ${({ theme }) => theme?.main?.PRIMARY};
   font-size: 18px;
-  color: ${({ theme }) => theme?.main?.PRIMARY};
+  color: ${({ theme }) => theme?.main?.COLOR};
   height: 40px;
   margin-bottom: 15px;
   font-weight: bold;
@@ -42,7 +42,7 @@ const Desc = styled.TextInput`
   border-bottom-width: 2px;
   border-bottom-color: ${({ theme }) => theme?.main?.PRIMARY};
   font-size: 16px;
-  color: ${({ theme }) => theme?.main?.PRIMARY};
+  color: ${({ theme }) => theme?.main?.LITE_COLOR};
   min-height: 70px;
   // height: 100px;
   padding: 0 10px;

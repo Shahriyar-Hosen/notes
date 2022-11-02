@@ -8,6 +8,6 @@ export default {
   SEARCH:"#FFF",
   
   DARK: "#000b52",
-  SAME_DARK: "#454545",
+  SAME_DARK: "#dbdbdb",
   LIGHT: "#FFF",
 };
