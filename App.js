@@ -9,10 +9,9 @@ import dark from "./app/misc/dark";
 
 const App = () => {
   const [user, setUser] = useState({});
+
   const theme = {
-    main: colors || "mediumseagreen",
-    lith: colors,
-    dark: dark,
+    main: dark || "mediumseagreen",
   };
 
   const findUser = async () => {
