@@ -37,6 +37,7 @@ const EmptyHeader = styled.Text`
   text-transform: uppercase;
   font-weight: bold;
   opacity: 0.2;
+  color: ${({ theme }) => theme?.main?.COLOR}
 `;
 const EmptyHeaderContainer = styled.View`
   flex: 1;

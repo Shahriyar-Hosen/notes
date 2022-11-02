@@ -26,7 +26,12 @@ const App = () => {
     // AsyncStorage.clear();
   }, []);
 
-  if (!user?.name) return <Intro onFinish={findUser} />;
+  if (!user?.name)
+    return (
+      <ThemeProvider theme={theme}>
+        <Intro onFinish={findUser} />
+      </ThemeProvider>
+    );
 
   return (
     <ThemeProvider theme={theme}>
