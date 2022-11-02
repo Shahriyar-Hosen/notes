@@ -6,16 +6,16 @@ import styled from "styled-components/native";
 const width = Dimensions.get("window").width - 40;
 
 const Container = styled.TouchableOpacity`
-  background-color: ${colors.PRIMARY};
+  background-color: ${({ theme }) => theme.main.PRIMARY};
   width: ${width - 10}px;
   margin: 5px;
   padding: 8px;
   padding-inline: 15px;
   border-radius: 10px;
-  color: ${colors.SAME_DARK};
+  color: ${({ theme }) => theme.main.LITE_COLOR};
 `;
 const Title = styled.Text`
-  color: ${colors.DARK};
+  color:  ${({ theme }) => theme.main.COLOR};
   text-align: center;
   font-size: 16px;
   font-weight: bold;

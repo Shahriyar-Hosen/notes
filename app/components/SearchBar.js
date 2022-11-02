@@ -9,11 +9,15 @@ const Container = styled.View`
 `;
 const SearchInput = styled.TextInput`
   border-width: 1px;
-  border-color: greenyellow;
+  border-color: ${({ theme }) => theme?.main?.PRIMARY};
+  color: ${({ theme }) => theme?.main?.PRIMARY};
   height: 40px;
   border-radius: 30px;
   padding-left: 15px;
   font-size: 20px;
+  padding: 0 10px;
+  border-radius: 10px;
+  background-color: ${({ theme }) => theme?.main?.SEARCH};
 `;
 
 const SearchBar = ({ containerStyle, value, onClear, onChangeText }) => {

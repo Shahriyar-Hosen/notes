@@ -1,11 +1,19 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Appearance } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Intro from "./app/screens/Intro";
 import { useEffect, useState } from "react";
 import NoteScreen from "./app/screens/NoteScreen";
+import { ThemeProvider } from "styled-components/native";
+import colors from "./app/misc/colors";
+import dark from "./app/misc/dark";
 
 const App = () => {
   const [user, setUser] = useState({});
+  const theme = {
+    main: colors || "mediumseagreen",
+    lith: colors,
+    dark: dark,
+  };
 
   const findUser = async () => {
     const result = await AsyncStorage.getItem("user");
@@ -21,7 +29,11 @@ const App = () => {
 
   if (!user?.name) return <Intro onFinish={findUser} />;
 
-  return <NoteScreen user={user} />;
+  return (
+    <ThemeProvider theme={theme}>
+      <NoteScreen user={user} />
+    </ThemeProvider>
+  );
 };
 
 export default App;

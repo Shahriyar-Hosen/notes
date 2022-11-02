@@ -19,11 +19,11 @@ const InputTitle = styled.Text`
   margin-bottom: 5;
   opacity: 0.5;
 `;
-
+// ${colors.PRIMARY};
 const TextInputC = styled.TextInput`
   border-width: 2px;
-  border-color: ${colors.PRIMARY};
-  color: ${colors.PRIMARY};
+  border-color: ${({ theme }) => theme?.main?.PRIMARY};
+  color: ${({ theme }) => theme?.main?.PRIMARY};
   width: ${width}px;
   height: 50px;
   border-radius: 10px;

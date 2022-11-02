@@ -15,20 +15,22 @@ const Container = styled.ScrollView`
   padding: 0 20px;
   padding-top: 15px;
   flex: 1;
+  background-color: ${({ theme }) => theme?.main?.BG};
 `;
 const Title = styled.Text`
   font-size: 20px;
-  color: ${colors.DARK};
-  margin: 20px 0;
+  color: ${({ theme }) => theme.main.COLOR};
+  margin: 18px 0;
   font-weight: bold;
   text-align: center;
 `;
 const Desc = styled.Text`
-  font-size: 20px;
+  font-size: 15px;
   margin-bottom: 25px;
-  color: ${colors.SAME_DARK};
+  color: ${({ theme }) => theme.main.LITE_COLOR};
 `;
 const ModalBG = styled.View`
+  background-color: ${({ theme }) => theme?.main?.BG};
   flex: 1;
   z-index: -1;
 `;
@@ -119,7 +121,7 @@ const NoteDetailModal = ({ visible, onClose, setNotes, item }) => {
             antIconName="arrowleft"
             onPress={handleSubmit}
             style={{
-              backgroundColor: colors.LIGHT,
+              backgroundColor: colors.LITE_COLOR,
             }}
           />
           <BtnContainerL>

@@ -18,11 +18,19 @@ const Container = styled.View`
   padding: 0 20px;
   flex: 1;
   z-index: 1;
+  background-color: ${({ theme }) => theme?.main?.BG};
 `;
 const Header = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 10px;
+  color: ${({ theme }) => theme?.main?.SECONDARY}
+`;
+const Nav = styled.Text`
   font-size: 25px;
   font-weight: bold;
   padding-top: 20px;
+  color: ${({ theme }) => theme?.main?.COLOR}
 `;
 const EmptyHeader = styled.Text`
   font-size: 30px;
@@ -91,7 +99,9 @@ const NoteScreen = ({ user }) => {
     <>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <Container>
-          <Header>{`Good ${greet} ${user.name}`}</Header>
+
+          <Nav>Note List</Nav>
+          <Header> {`Good ${greet} ${user.name}`}</Header>
 
           {notes.length ? (
             <SearchBar containerStyle={{ marginVertical: 20 }} />

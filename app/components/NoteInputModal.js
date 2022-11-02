@@ -15,23 +15,39 @@ import styled from "styled-components/native";
 const Container = styled.View`
   padding: 0 20px;
   padding-top: 15px;
+  background-color: ${({ theme }) => theme?.main?.BG};
+  color: ${({ theme }) => theme?.main?.COLOR};
+  height: 100%;
+`;
+const Header = styled.Text`
+  font-size: 25px;
+  font-weight: bold;
+  padding: 20px 0;
+  color: ${({ theme }) => theme?.main?.COLOR};
+  text-align: center;
 `;
 const Title = styled.TextInput`
   border-bottom-width: 2px;
-  border-bottom-color: ${colors.PRIMARY};
-  font-size: 20px;
-  color: ${colors.DARK};
+  border-bottom-color: ${({ theme }) => theme?.main?.PRIMARY};
+  font-size: 18px;
+  color: ${({ theme }) => theme?.main?.PRIMARY};
   height: 40px;
   margin-bottom: 15px;
   font-weight: bold;
+  padding: 0 10px;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme?.main?.SEARCH};
 `;
 const Desc = styled.TextInput`
   border-bottom-width: 2px;
-  border-bottom-color: ${colors.PRIMARY};
-  font-size: 20px;
-  color: ${colors.DARK};
-  // min-height: 100px;
-  height: 100px;
+  border-bottom-color: ${({ theme }) => theme?.main?.PRIMARY};
+  font-size: 16px;
+  color: ${({ theme }) => theme?.main?.PRIMARY};
+  min-height: 70px;
+  // height: 100px;
+  padding: 0 10px;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme?.main?.SEARCH};
 `;
 const ModalBG = styled.View`
   flex: 1;
@@ -82,6 +98,7 @@ const NoteInputModal = ({ visible, onClose, onSubmit, note, isEdit }) => {
       <StatusBar hidden />
       <Modal visible={visible} animationType="fade">
         <Container>
+          <Header>Add New Notes!</Header>
           <Title
             value={title}
             onChangeText={(text) => handleOnChangeText(text, "title")}
@@ -118,35 +135,5 @@ const NoteInputModal = ({ visible, onClose, onSubmit, note, isEdit }) => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 20,
-    paddingTop: 15,
-  },
-  input: {
-    borderBottomWidth: 2,
-    borderBottomColor: colors.PRIMARY,
-    fontSize: 20,
-    color: colors.DARK,
-  },
-  title: {
-    height: 40,
-    marginBottom: 15,
-    fontWeight: "bold",
-  },
-  desc: {
-    height: 100,
-  },
-  modalBG: {
-    flex: 1,
-    zIndex: -1,
-  },
-  btnContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    paddingVertical: 15,
-  },
-});
 
 export default NoteInputModal;
