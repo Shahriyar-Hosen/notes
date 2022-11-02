@@ -16,6 +16,7 @@ import colors from "../misc/colors";
 import styled from "styled-components/native";
 import { AntDesign } from "@expo/vector-icons";
 import dark from "../misc/dark";
+import { Entypo } from "@expo/vector-icons";
 
 const Container = styled.View`
   padding: 0 20px;
@@ -62,21 +63,20 @@ const AddBtn = styled.Text`
 const Mode = styled.Text`
   font-size: 12px;
   font-weight: bold;
-  padding-top: 15px;
+  padding-top: 10px;
   color: ${({ theme }) => theme?.main?.COLOR};
 `;
 
 const NavContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  padding: 0 15px;
+  padding: 0 5px;
   margin: 10px 0;
 `;
 const NavContainerEnd = styled.View`
   flex-direction: row;
   justify-content: space-between;
   padding-top: 15px;
-  margin: 0 20px;
 `;
 
 const NoteScreen = ({ user, isDarkMode, setIsDarkMode }) => {
@@ -131,7 +131,18 @@ const NoteScreen = ({ user, isDarkMode, setIsDarkMode }) => {
             <Nav>Note List</Nav>
 
             <NavContainerEnd>
-              <Mode>{!isDarkMode ? "Dark" : "Light"}</Mode>
+              <Mode>
+                {!isDarkMode ? (
+                  <Entypo
+                    name="moon"
+                    size={21}
+                    style={{ marginTop: 5 }}
+                    color="black"
+                  />
+                ) : (
+                  <Entypo name="light-down" size={24} color="white" />
+                )}
+              </Mode>
 
               <Switch
                 value={isDarkMode}
@@ -169,7 +180,6 @@ const NoteScreen = ({ user, isDarkMode, setIsDarkMode }) => {
         onPress={() => setModalVisible(true)}
         antIconName="plus"
         style={styles.addBtn}
-        
       />
 
       <NoteInputModal
